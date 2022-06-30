@@ -15,8 +15,16 @@ function llamada() {
     console.log(response);
   })
 }
+function otro() {
+  User.otro().then((response)=>{
+    alert(response.data);
+  }).catch(()=>{
+
+  })
+}
 function login() {
-  User.login({hola:"hola"}).then(()=>{
+  User.login({hola:"hola"}).then((response)=>{
+    alert(response.data);
     localStorage.setItem("token", response.data)
   }).catch(()=>{
 
@@ -30,6 +38,7 @@ const count = ref(0)
   {{verga}}
   <button type="button" @click="count++">count is: {{ count }}</button>
   <button @click="login">Llamada</button>
+  <button @click="otro">Otro</button>
 </template>
 
 <style scoped>
