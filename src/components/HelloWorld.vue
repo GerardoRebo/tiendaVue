@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 import  axios  from "axios";
 import User from '../apis/User'
 
@@ -7,7 +7,6 @@ defineProps({
   msg: String
 })
 const verga = ref("")
-
 function llamada() {
   axios.get("http://localhost/tienda/public/otro").then((response)=>{
     verga.value = response.data
