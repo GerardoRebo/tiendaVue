@@ -1,40 +1,36 @@
 <script setup>
 import { ref } from 'vue'
+import  axios  from "axios";
+import User from '../apis/User'
 
 defineProps({
   msg: String
 })
+const verga = ref("")
 
+function llamada() {
+  axios.get("http://localhost/tienda/public/otro").then((response)=>{
+    verga.value = response.data
+  }).catch((response)=>{
+    console.log(response);
+  })
+}
+function login() {
+  User.login({hola:"hola"}).then(()=>{
+    localStorage.setItem("token", response.data)
+  }).catch(()=>{
+
+  })
+}
 const count = ref(0)
 </script>
 
 <template>
   <h1>{{ msg }}</h1>
-
-  <p>
-    Recommended IDE setup:
-    <a href="https://code.visualstudio.com/" target="_blank">VS Code</a>
-    +
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-  </p>
-
-  <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank">
-      Vite Documentation
-    </a>
-    |
-    <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
-  </p>
-
+  {{verga}}
   <button type="button" @click="count++">count is: {{ count }}</button>
-  <p>
-    Edit
-    <code>components/HelloWorld.vue</code> to test hot module replacement.
-  </p>
+  <button @click="login">Llamada</button>
 </template>
 
 <style scoped>
-a {
-  color: #42b983;
-}
 </style>
